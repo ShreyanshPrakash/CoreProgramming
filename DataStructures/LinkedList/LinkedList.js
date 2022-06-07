@@ -43,6 +43,73 @@ export class LinkedList{
             iterator = iterator.next;
         }
         prevIterator.next = iterator.next;
+        this.length--;
+        return this.head;
+    }
 
+    itemAtIndex(index){
+        if(index === 0 || index > this.length){
+            return null;
+        }
+
+        if(index === 1){
+            return this.head;
+        }
+
+        let count = 1;
+        let iterator = this.head;
+        while(count < index){
+            iterator = iterator.next;
+            count++;
+        }
+
+        return iterator;
+    }
+
+    removeAtIndex(index){
+        if(index === 0 || index > this.length){
+            return null;
+        }
+
+        if(index === 1){
+            this.head = this.head.next;
+            return this.head;
+        }
+
+        let count = 1;
+        let iterator = this.head;
+        let prevIterator = null;
+        while(count < index){
+            prevIterator = iterator;
+            iterator = iterator.next;
+            count++;
+        }
+        prevIterator.next = iterator.next;
+        this.length--;
+        return this.head;
+    }
+
+    addAtIndex(index, node){
+        if( index < 0 || index >= this.length + 2){
+            return null;
+        }
+
+        if(index === 1){
+            node.next = this.head;
+            this.head = node;
+            return this.head;
+        }
+
+        let count = 1;
+        let iterator = this.head;
+        let prevIterator = null;
+        while(count < index){
+            prevIterator = iterator;
+            iterator = iterator.next;
+            count++;
+        }
+        prevIterator.next = node;
+        node.next = iterator.next;
+        return this.head;
     }
 }
