@@ -83,6 +83,25 @@ var twoSum = function(nums, target) {
     }
 };
 
+// same as above but more readable
+var twoSum = function(nums, target) {
+    
+    
+    let storage = {};
+    let entries = nums.entries();
+    
+    for(let [index, num] of entries){
+        
+        if( storage[num] >= 0){
+            return [storage[num], index];
+        }
+        
+        storage[target - num] = index;
+
+    }
+    
+};
+
 
 // Solution 4 (most Optimized)
 //  Here my keys is the num of [1,2,4,5,6]
